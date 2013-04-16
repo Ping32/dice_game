@@ -1,0 +1,17 @@
+import java.util.Random;
+package pl.edu.agh.to1.dice.logic;
+public class Dices{
+	private int range;
+	private Random generator=new Random();
+        private int amount;
+        private int [] dices;
+	
+	public Dice(int amount, int range){
+		this.range=range;
+                dices = new int[amount];
+	}
+	
+	public int roll(){
+		return rand.nextInt(range)+1;
+	} 
+}

@@ -1,0 +1,12 @@
+package pl.edu.agh.to1.dice.logic.hands;
+
+public class Chance extends Hand{
+
+	public int calculate(int[] currHand){
+	    int tmp=0;
+	    for(int i :currHand)
+		    tmp+=i;
+	    return tmp;
+	}
+	
+} 

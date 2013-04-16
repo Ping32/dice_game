@@ -1,0 +1,13 @@
+package pl.edu.agh.to1.dice.logic;
+
+public abstract class Hand{
+	private int[] set;
+	private int val;
+	
+	public Hand(int[] dices){
+		set=dices;
+		val=0;
+	}
+	
+	public abstract int calculate(int[] currHand,boolean isJocker); 
+}
