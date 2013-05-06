@@ -1,6 +1,5 @@
 package pl.edu.agh.to1.dice.logic;
-
-import java.io.*;
+import  java.io.*;
 import java.util.*;
 
 public class DiceGame {

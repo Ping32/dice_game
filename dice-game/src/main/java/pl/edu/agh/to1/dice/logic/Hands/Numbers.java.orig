@@ -1,0 +1,35 @@
+package pl.edu.agh.to1.dice.logic.Hands;
+
+import pl.edu.agh.to1.dice.logic.Hand;
+
+public class Numbers extends Hand {
+	private int number;
+<<<<<<< HEAD
+	private int factor;
+	
+	public Numbers(int num,int f){
+		factor=f;
+		this.number=num;
+	}
+	
+	public int calculate(int[] currHand){
+		int tmp=0;
+		for(int i=0;i<5;i++)
+			if (currHand[i]==number)
+				tmp+=currHand[i];
+		return tmp*factor;
+=======
+
+	public Numbers(int num) {
+		this.number = num;
+	}
+
+	public int calculate(int[] currHand) {
+		int tmp = 0;
+		for (int i = 0; i < 5; i++)
+			if (currHand[i] == number)
+				tmp += currHand[i];
+		return tmp;
+>>>>>>> c672db751f85b10e6a144268500df93d2ae31847
+	}
+}

@@ -1,0 +1,27 @@
+package pl.edu.agh.to1.dice.logic.Hands;
+
+<<<<<<< HEAD
+public class Chance extends Hand{
+	private int factor;
+	
+	public Chance(int f){
+	    factor =f;
+	}
+
+	public int calculate(int[] currHand){
+	    int tmp=0;
+	    for(int i :currHand)
+		    tmp+=i;
+	    return tmp*factor;
+=======
+import pl.edu.agh.to1.dice.logic.Hand;
+
+public class Chance extends Hand {
+	public int calculate(int[] currHand) {
+		int tmp = 0;
+		for (int i : currHand)
+			tmp += i;
+		return tmp;
+>>>>>>> c672db751f85b10e6a144268500df93d2ae31847
+	}
+}

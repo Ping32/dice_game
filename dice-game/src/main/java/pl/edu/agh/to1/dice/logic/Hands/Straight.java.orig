@@ -1,0 +1,66 @@
+package pl.edu.agh.to1.dice.logic.Hands;
+
+import pl.edu.agh.to1.dice.logic.Hand;
+
+public class Straight extends Hand {
+	private boolean isSmall;
+<<<<<<< HEAD
+	private int factor;
+	
+	public Straight(boolean a,int f){
+ 		factor = f;
+		isSmall=a;
+=======
+
+	public Straight(boolean a) {
+		isSmall = a;
+>>>>>>> c672db751f85b10e6a144268500df93d2ae31847
+	}
+
+	public int calculate(int[] currHand) {
+		int[] tmp = new int[6];
+		int maxSub = 0;
+		boolean var = false;
+		for (int i = 0; i < 5; i++) {
+			++tmp[currHand[i] - 1];
+		}
+		if (!isSmall && tmp[1] > 0 && tmp[2] > 0 && tmp[3] > 0 && tmp[4] > 0
+				&& (tmp[0] > 0 || tmp[5] > 0)) {
+			return 40;
+		}
+		for (int i = 0; i < 5 && !var; i++) {
+			if (tmp[i] > 0)
+				maxSub++;
+
+		}
+<<<<<<< HEAD
+		if (!isSmall && tmp[1]>0 && 
+		    tmp[2]>0 && tmp[3]>0 && tmp[4]>0 &&
+		    (tmp[0]>0 ||tmp[5]>0)){
+		    return 40*factor;
+		} 
+		for(int i=0;i<6 && !var ;i++){
+			if(tmp[i]>0)
+			    maxSub++;
+	
+		}	
+		 if(maxSub>=4 &&tmp[2]>0 && tmp[3]>0 &&(
+		    tmp[0]>0 && tmp[1]>0 ||
+		    tmp[1]>0 && tmp[4]>0 ||
+		    tmp[4]>0 && tmp[5]>0)
+		    )
+			    var =true;
+=======
+		if (maxSub >= 4
+				&& tmp[2] > 0
+				&& tmp[3] > 0
+				&& (tmp[0] > 0 && tmp[1] > 0 || tmp[1] > 0 && tmp[4] > 0 || tmp[4] > 0
+						&& tmp[5] > 0))
+			var = true;
+>>>>>>> c672db751f85b10e6a144268500df93d2ae31847
+		if (var)
+			return 30*factor;
+		else
+			return 0;
+	}
+}
