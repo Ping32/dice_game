@@ -1,12 +1,12 @@
-package pl.edu.agh.to1.dice.logic;
+package pl.edu.agh.to1.dice.logic.Hands;
 
-public class Chance extends Hand{
+import pl.edu.agh.to1.dice.logic.Hand;
 
-	public int calculate(int[] currHand){
-	    int tmp=0;
-	    for(int i :currHand)
-		    tmp+=i;
-	    return tmp;
+public class Chance extends Hand {
+	public int calculate(int[] currHand) {
+		int tmp = 0;
+		for (int i : currHand)
+			tmp += i;
+		return tmp;
 	}
-	
-} 
+}
