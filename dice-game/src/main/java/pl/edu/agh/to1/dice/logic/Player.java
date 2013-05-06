@@ -5,32 +5,32 @@ import java.util.*;
 public class Player{
 	private String name;
 	private Map<String,Integer> scoreBoard;
-// 	private int[] currentHand;
 	
-	public Player(String s){
+	public Player(String s,int j){
 		this.name=s;
 		this.scoreBoard=new HashMap<String,Integer>();
-		scoreBoard.put("1", -1);
-		scoreBoard.put("2", -1);
-		scoreBoard.put("3", -1);
-		scoreBoard.put("4", -1);
-		scoreBoard.put("5", -1);
-		scoreBoard.put("6", -1);
-		
-		scoreBoard.put("3ki", -1);
-		scoreBoard.put("4ki", -1);
-		scoreBoard.put("g", -1);
-		
-		scoreBoard.put("ful", -1);
-		
-		scoreBoard.put("ms", -1);
-		scoreBoard.put("ds", -1);
-		
-		scoreBoard.put("sz", -1);
-		scoreBoard.put("par", -1);
-		scoreBoard.put("npar", -1);
-// 		scoreBoard.put("premia", 0);
-// 		this.currentHand= new int[5];
+		for (int i =1; i<1+j;i++){
+			scoreBoard.put(String.format("1x%d",i), -1);
+			scoreBoard.put(String.format("2x%d",i), -1);
+			scoreBoard.put(String.format("3x%d",i), -1);
+			scoreBoard.put(String.format("4x%d",i), -1);
+			scoreBoard.put(String.format("5x%d",i), -1);
+			scoreBoard.put(String.format("6x%d",i), -1);
+			
+			scoreBoard.put(String.format("3kix%d",i), -1);
+			scoreBoard.put(String.format("4kix%d",i), -1);
+			scoreBoard.put(String.format("gx%d",i), -1);
+			
+			scoreBoard.put(String.format("fulx%d",i), -1);
+			
+			scoreBoard.put(String.format("msx%d",i), -1);
+			scoreBoard.put(String.format("dsx%d",i), -1);
+			
+			scoreBoard.put(String.format("szx%d",i), -1);
+			scoreBoard.put(String.format("parx%d",i), -1);
+			scoreBoard.put(String.format("nparx%d",i), -1);
+	// 		scoreBoard.put("premia", 0);
+		}
 	}
 	
 	

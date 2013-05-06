@@ -8,15 +8,58 @@ public class DiceGame {
   private Player[] players;
   Dice dice;
   Map<String,Hand> hand = new HashMap<String,Hand>();
+  
+  Map<String,Integer> ranking = new HashMap<String,Integer>();
+  private final File plikZRankingiem;
+  
   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
   
     public DiceGame(){
       
+      plikZRankingiem = new File("ranking.dat");
+      
+      if(plikZRankingiem.exists()){
+        ObjectInputStream ois = null;
+        
+        try{
+          
+          ois=new ObjectInputStream(new FileInputStream(plikZRankingiem));
+          
+          ranking = (Map<String,Integer>)ois.readObject();
+          ois.close();
+          
+        }catch(Exception e){e.printStackTrace();}
+      }
+      System.out.println("Ilosc rund:");
+      int numberOfRounds=1;
+      try{
+        numberOfRounds = Integer.parseInt(br.readLine());
+      }catch(Exception e){ /*e.printStackTrace();*/ }
+      for (int i=1;i<numberOfRounds+1;i++){
+	    hand.put(String.format("1x%d",i), new Numbers(1,i));
+	    hand.put(String.format("2x%d",i), new Numbers(2,i));
+	    hand.put(String.format("3x%d",i), new Numbers(3,i));
+	    hand.put(String.format("4x%d",i), new Numbers(4,i));
+	    hand.put(String.format("5x%d",i), new Numbers(5,i));
+	    hand.put(String.format("6x%d",i), new Numbers(6,i));
+	    
+	    hand.put(String.format("3kix%d",i), new SameKind(3,i));
+	    hand.put(String.format("4kix%d",i), new SameKind(4,i));
+	    hand.put(String.format("gx%d",i), new SameKind(5,i));
+	    
+	    hand.put(String.format("fulx%d",i), new Ful(i));
+	    
+	    hand.put(String.format("msx%d",i), new Straight(true,i));
+	    hand.put(String.format("dsx%d",i), new Straight(false,i));
+	    
+	    hand.put(String.format("szx%d",i), new Chance(i));
+	    hand.put(String.format("nparx%d",i), new Odd(false,i));
+	    hand.put(String.format("parx%d",i),new Odd(true,i));
+      }
       System.out.println("Wybierz ilosc graczy:");
       try{
         numberOfPlayers = Integer.parseInt(br.readLine());
       }catch(Exception e){ /*e.printStackTrace();*/ }
-      
       players = new Player[numberOfPlayers];
       
       for(int i=0;i<numberOfPlayers;++i){
@@ -25,34 +68,22 @@ public class DiceGame {
         try{
           playerName = br.readLine();
         }catch(Exception e){ /*e.printStackTrace();*/ }
-        players[i] = new Player(playerName);
+        players[i] = new Player(playerName,numberOfRounds);
+        
+        if(null == ranking.get(playerName))
+          ranking.put(playerName, 0);
       }
-      
-      hand.put("1", new Numbers(1));
-      hand.put("2", new Numbers(2));
-      hand.put("3", new Numbers(3));
-      hand.put("4", new Numbers(4));
-      hand.put("5", new Numbers(5));
-      hand.put("6", new Numbers(6));
-      
-      hand.put("3ki", new SameKind(3));
-      hand.put("4ki", new SameKind(4));
-      hand.put("g", new SameKind(5));
-      
-      hand.put("ful", new Ful());
-      
-      hand.put("ms", new Straight(true));
-      hand.put("ds", new Straight(false));
-      
-      hand.put("sz", new Chance());
-      hand.put("npar", new Odd(false));
-      hand.put("par",new Odd(true));
-      
+
       dice = new Dice(5,6);
     }
     
     public void play() {
         System.out.println("Playing Dice");
+        
+        System.out.println();
+        System.out.println("Ranking:");
+        for(Map.Entry<String,Integer> entry : ranking.entrySet())
+          System.out.println(entry.getKey() + ": " + entry.getValue());
         
         for(int i=0;i<13;++i){
           
@@ -95,7 +126,7 @@ public class DiceGame {
               String uklad="";
               
               do{
-                System.out.println("Ktory uklad wybierasz? (1 - jedynki, …., 6 - szóstki, 3ki - trojki, 4ki - czwórki, ful, ms - mały strit, ds - duzy strit, g - general, sz - szansa)");
+                System.out.println("Ktory uklad wybierasz? (1 - jedynki, …., 6 - szóstki, 3ki - trojki, 4ki - czwórki, ful, ms - mały strit, ds - duzy strit, g - general, sz - szansa)+xmnozqnik");
                 
                 try{
                   uklad = br.readLine();
@@ -137,11 +168,22 @@ public class DiceGame {
         
         for(Player player : players){
           int score = player.getScore();
-          if(score == maxScore)
+          if(score == maxScore){
             System.out.println(player.getName());
+            ranking.put(player.getName(), ranking.get(player.getName())+1);
+          }
         }
         
         for(Player scoreBoardPlayer : players)
           scoreBoardPlayer.printPoint();
+        
+        ObjectOutputStream oos=null;
+    
+        try{
+          oos=new ObjectOutputStream(new FileOutputStream(plikZRankingiem));
+          
+          oos.writeObject(ranking);
+          oos.close();
+        }catch(Exception e){e.printStackTrace();}
     } 
 }

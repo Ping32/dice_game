@@ -2,8 +2,10 @@ package pl.edu.agh.to1.dice.logic;
 
 public class Odd extends Hand{
 	private boolean isEven;
+	private int factor;
 	
-	public Odd(boolean isEven){
+	public Odd(boolean isEven,int f){
+	    factor=f;
 	    this.isEven=isEven;
 	}
 	
@@ -15,7 +17,7 @@ public class Odd extends Hand{
 		else
 		    ret+= ((i%2==1)? i:0);
 		    
-	    return ret;
+	    return ret*factor;
 	}
 	
 }

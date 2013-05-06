@@ -2,8 +2,10 @@ package pl.edu.agh.to1.dice.logic;
 
 public class Numbers extends Hand{
 	private int number;
+	private int factor;
 	
-	public Numbers(int num){
+	public Numbers(int num,int f){
+		factor=f;
 		this.number=num;
 	}
 	
@@ -12,7 +14,7 @@ public class Numbers extends Hand{
 		for(int i=0;i<5;i++)
 			if (currHand[i]==number)
 				tmp+=currHand[i];
-		return tmp;
+		return tmp*factor;
 	}
 	
 }
