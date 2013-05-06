@@ -27,6 +27,8 @@ public class Player{
 		scoreBoard.put("ds", -1);
 		
 		scoreBoard.put("sz", -1);
+		scoreBoard.put("par", -1);
+		scoreBoard.put("npar", -1);
 // 		scoreBoard.put("premia", 0);
 // 		this.currentHand= new int[5];
 	}

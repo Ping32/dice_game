@@ -1,0 +1,21 @@
+package pl.edu.agh.to1.dice.logic;
+
+public class Even extends Hand{
+	private boolean isEven;
+	
+	public Even(boolean isEven){
+	    this.isEven=isEven;
+	}
+	
+	public int calculate(int[] currHand){
+	    int ret=0;
+	    for(int i:currHand)
+		if(isEven)
+		    ret+= ((i%2==0)? i:0);
+		else
+		    ret+= ((i%2==1)? i:0);
+		    
+	    return ret;
+	}
+	
+}
