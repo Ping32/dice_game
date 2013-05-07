@@ -2,7 +2,6 @@ package pl.edu.agh.to1.dice.logic;
 
 public class Straight extends Hand{
 	private boolean isSmall;
-	private int factor;
 	
 	public Straight(boolean a,int f){
  		factor = f;

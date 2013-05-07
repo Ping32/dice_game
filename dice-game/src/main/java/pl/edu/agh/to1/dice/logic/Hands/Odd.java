@@ -2,7 +2,6 @@ package pl.edu.agh.to1.dice.logic;
 
 public class Odd extends Hand{
 	private boolean isEven;
-	private int factor;
 	
 	public Odd(boolean isEven,int f){
 	    factor=f;

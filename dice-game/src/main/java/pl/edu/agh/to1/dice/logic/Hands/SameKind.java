@@ -2,7 +2,6 @@ package pl.edu.agh.to1.dice.logic;
 
 public class SameKind extends Hand{
 	private int amount;
-	private int factor;
 	
 	public SameKind(int a,int f){
 		factor =f;

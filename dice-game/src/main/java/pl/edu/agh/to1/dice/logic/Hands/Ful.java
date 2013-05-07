@@ -1,7 +1,6 @@
 package pl.edu.agh.to1.dice.logic;
 
 public class Ful extends Hand{
-	private int factor;
 	
 	public Ful(int f){
 	    factor =f;

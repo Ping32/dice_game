@@ -2,7 +2,6 @@ package pl.edu.agh.to1.dice.logic;
 
 public class Numbers extends Hand{
 	private int number;
-	private int factor;
 	
 	public Numbers(int num,int f){
 		factor=f;
