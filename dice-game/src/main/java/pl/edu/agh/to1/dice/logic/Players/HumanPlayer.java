@@ -33,13 +33,11 @@ public class HumanPlayer implements pl.edu.agh.to1.dice.logic.Players.Player {
                     break;
                 }
 
-                if(numerKosci < 1 || numerKosci > Dice.diceNumber) {
+                if(1 <= numerKosci && numerKosci <= Dice.diceNumber) {
                     block.add(numerKosci - 1);
                 } else {
                     System.out.println("Błędny numer kości!");
                 }
-
-                block.add(numerKosci);
             } catch (Exception e) { /* e.printStackTrace(); */
             }
         }
@@ -58,6 +56,9 @@ public class HumanPlayer implements pl.edu.agh.to1.dice.logic.Players.Player {
     public Hand doHandScoring(int[] dice) {
         Hand wybranyUklad;
         String uklad = "";
+        
+        System.out.println("Wylosowano:");
+        Dice.printDice(dice);
 
         do {
             System.out.println("Ktory uklad wybierasz? (1 - jedynki, …., 6 - szóstki, 3ki - trojki, 4ki - czwórki, ful, ms - mały strit, ds - duzy strit, g - general, sz - szansa)");

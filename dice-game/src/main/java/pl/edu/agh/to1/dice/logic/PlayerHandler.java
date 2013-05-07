@@ -1,17 +1,15 @@
 package pl.edu.agh.to1.dice.logic;
 
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
-import pl.edu.agh.to1.dice.logic.Players.ComputerPlayer;
 import pl.edu.agh.to1.dice.logic.Players.Player;
 
 import java.util.Map;
 
-public class PlayerData {
+public class PlayerHandler {
     public final String name;
     public final Player player;
     private final Score score;
 
-    public PlayerData(String name, Player player) {
+    public PlayerHandler(String name, Player player) {
         this.name = name;
         this.player = player;
         this.score = new Score();

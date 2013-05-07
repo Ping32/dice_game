@@ -8,7 +8,7 @@ import pl.edu.agh.to1.dice.logic.Players.HumanPlayer;
 public class DiceGame {
 
 	private int numberOfPlayers;
-	private PlayerData[] players;
+	private PlayerHandler[] playerHandlers;
 	Dice dice;
 	public static final Map<String, Hand> hands = new HashMap<String, Hand>();
 	public static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,7 +43,7 @@ public class DiceGame {
 		} catch (Exception e) { /* e.printStackTrace(); */
 		}
 
-		players = new PlayerData[numberOfPlayers];
+		playerHandlers = new PlayerHandler[numberOfPlayers];
 
 		for (int i = 0; i < numberOfPlayers; ++i) {
 			System.out.println("Wprowadz nazwe kolejnego gracza:");
@@ -52,7 +52,7 @@ public class DiceGame {
 				playerName = br.readLine();
 			} catch (Exception e) { /* e.printStackTrace(); */
 			}
-			players[i] = new PlayerData(playerName, new HumanPlayer());
+			playerHandlers[i] = new PlayerHandler(playerName, new HumanPlayer());
 		}
 
 		dice = new Dice(6);
@@ -62,8 +62,8 @@ public class DiceGame {
 		System.out.println("Playing Dice");
 
 		for (int i = 0; i < 13; ++i) {
-			for (PlayerData player : players) {
-				for (PlayerData scoreBoardScore : players) {
+			for (PlayerHandler player : playerHandlers) {
+				for (PlayerHandler scoreBoardScore : playerHandlers) {
 					System.out.println("Gracz: " + scoreBoardScore.getName());
 					scoreBoardScore.getScore().printPoint();
 				}
@@ -82,7 +82,7 @@ public class DiceGame {
 
 		int maxScore = -1;
 
-		for (PlayerData playerScore : players) {
+		for (PlayerHandler playerScore : playerHandlers) {
 			int score = playerScore.getScore().getScore();
 			if (score > maxScore)
 				maxScore = score;
@@ -90,13 +90,13 @@ public class DiceGame {
 
 		System.out.println("Zwyciezcy:");
 
-		for (PlayerData playerScore : players) {
+		for (PlayerHandler playerScore : playerHandlers) {
 			int score = playerScore.getScore().getScore();
 			if (score == maxScore)
 				System.out.println(playerScore.getName());
 		}
 
-		for (PlayerData scoreBoardScore : players)
+		for (PlayerHandler scoreBoardScore : playerHandlers)
 			scoreBoardScore.getScore().printPoint();
 	}
 }
