@@ -1,14 +1,12 @@
 package pl.edu.agh.to1.dice.logic;
 
 public class Dice {
-
-	private int amount;
+	public static final int diceNumber = 5;
 	private Die[] dice;
 
-	public Dice(int amount, int range) {
-		this.amount = amount;
-		dice = new Die[amount];
-		for (int i = 0; i < amount; i++)
+	public Dice(int range) {
+		dice = new Die[diceNumber];
+		for (int i = 0; i < diceNumber; i++)
 			dice[i] = new Die(range);
 	}
 
@@ -18,7 +16,7 @@ public class Dice {
 	}
 
 	public boolean stop(int which) {
-		if (which >= 0 && which < amount) {
+		if (which >= 0 && which < diceNumber) {
 			dice[which].setStopped(true);
 			return true;
 		}
@@ -26,17 +24,22 @@ public class Dice {
 	}
 
 	public int[] getDice() {
-		int[] ret = new int[amount];
+		int[] ret = new int[diceNumber];
 
-		for (int i = 0; i < amount; ++i)
+		for (int i = 0; i < diceNumber; ++i)
 			ret[i] = dice[i].getValue();
 		return ret;
 	}
 
 	public void printDice() {
-		for (int i = 0; i < amount; ++i)
-			System.out.println("Kosc" + i + "=" + dice[i].getValue());
+		for (int i = 0; i < diceNumber; ++i)
+            System.out.println("Kosc" + (i+1) + "=" + dice[i]);
 	}
+
+    public static void printDice(int[] dice) {
+        for (int i = 0; i < dice.length; ++i)
+            System.out.println("Kosc" + (i+1) + "=" + dice[i]);
+    }
 
 	public void reset() {
 		for (Die die : dice)

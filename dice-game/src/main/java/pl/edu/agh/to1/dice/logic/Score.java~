@@ -1,15 +1,17 @@
 package pl.edu.agh.to1.dice.logic;
+
 import java.util.*;
 
-
-public class Player{
+public class Score {
 	private String name;
-	private Map<String,Integer> scoreBoard;
-	
-	public Player(String s,int j){
-		this.name=s;
+	private Map<String, Integer> scoreBoard;
+
+	// private int[] currentHand;
+
+	public Score(int numberOfRounds/*String n*/) {
+// 		this.name=n;
 		this.scoreBoard=new HashMap<String,Integer>();
-		for (int i =1; i<1+j;i++){
+		for (int i =1; i<numberOfRounds+1;i++){
 			scoreBoard.put(String.format("1x%d",i), -1);
 			scoreBoard.put(String.format("2x%d",i), -1);
 			scoreBoard.put(String.format("3x%d",i), -1);
@@ -29,23 +31,33 @@ public class Player{
 			scoreBoard.put(String.format("szx%d",i), -1);
 			scoreBoard.put(String.format("parx%d",i), -1);
 			scoreBoard.put(String.format("nparx%d",i), -1);
-	// 		scoreBoard.put("premia", 0);
+		}
+
+	}
+
+	// private boolean isGeneral() {
+	// boolean is=true;
+	// for(int i=1;i<5;i++)
+	// if(currentHand[0]!=currentHand[i])
+	// is=false;
+	// return is;
+	// }
+
+	// public boolean isJocker(String hands) {
+	// return (isGeneral() &&
+	// (scoreBoard.get("g")>0) &&
+	// (scoreBoard.get(Integer.toString(currentHand[0]))>0));
+	// }
+
+	public void printPoint() {
+		for (String i : scoreBoard.keySet()) {
+			System.out.println("Uklad " + i + " Punkty: " + scoreBoard.get(i));
 		}
 	}
-	
-	
 
-	
-	public void printPoint(){  
-	    for(String i : scoreBoard.keySet()){	
-		System.out.println("Uklad "+i+" Punkty: "+scoreBoard.get(i));
-	    }
-	}
-	
-	public String getName(){
-	    return name;
-	    }
-	
+// 	public String getName() {
+// 		return name;
+// 	}
 
 	public int getScore() {
 		int sum = 0;
@@ -59,7 +71,7 @@ public class Player{
 	}
 
 	public void updateScoreboard(String hand, int points) {
-		// if(isJocker(hand)) {
+		// if(isJocker(hands)) {
 		// scoreBoard.put("premia",100);
 		// }
 		scoreBoard.put(hand, points);
